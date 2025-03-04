@@ -142,3 +142,4 @@ C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\Biblioteca
 C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\obj\Debug\net8.0\BibliotecaDoHass.pdb
 C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\obj\Debug\net8.0\BibliotecaDoHass.genruntimeconfig.cache
 C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\obj\Debug\net8.0\ref\BibliotecaDoHass.dll
+C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\obj\Debug\net8.0\BibliotecaDoHass.sourcelink.json

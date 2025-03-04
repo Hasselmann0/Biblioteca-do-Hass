@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\BibliotecaDoHass.csproj": {}
+    "C:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\BibliotecaDoHass.csproj": {}
   },
   "projects": {
-    "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\BibliotecaDoHass.csproj": {
+    "C:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\BibliotecaDoHass.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\BibliotecaDoHass.csproj",
+        "projectUniqueName": "C:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\BibliotecaDoHass.csproj",
         "projectName": "BibliotecaDoHass",
-        "projectPath": "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\BibliotecaDoHass.csproj",
+        "projectPath": "C:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\BibliotecaDoHass.csproj",
         "packagesPath": "C:\\Users\\isaac\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\obj\\",
+        "outputPath": "C:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

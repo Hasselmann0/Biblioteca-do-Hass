@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BibliotecaDoHass")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98c271b8e975e2c35cc6fd121692548586f6862d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+661f7b4a0a2777bd0492bc4b6b12375614645e8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("BibliotecaDoHass")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BibliotecaDoHass")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

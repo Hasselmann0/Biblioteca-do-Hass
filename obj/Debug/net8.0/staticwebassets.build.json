@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gnQcTRkc8D+ApyTFACzcT6VcufTDr4/D47MYtiFC5w8=",
+  "Hash": "W0NDBs2+Y+SrAx/HdeoI6sDaUFLkMwbtiMMZfoNMB9E=",
   "Source": "BibliotecaDoHass",
   "BasePath": "_content/BibliotecaDoHass",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\wwwroot\\css\\Sketchy.css",
+      "SourceId": "BibliotecaDoHass",
+      "SourceType": "Discovered",
+      "ContentRoot": "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\wwwroot\\",
+      "BasePath": "_content/BibliotecaDoHass",
+      "RelativePath": "css/Sketchy.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Sketchy.css"
     },
     {
       "Identity": "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\wwwroot\\favicon.ico",

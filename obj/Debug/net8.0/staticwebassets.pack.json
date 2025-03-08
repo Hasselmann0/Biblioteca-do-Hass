@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\BibliotecaDoHass.bundle.scp.css"
     },
     {
+      "Id": "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\wwwroot\\css\\Sketchy.css",
+      "PackagePath": "staticwebassets\\css\\Sketchy.css"
+    },
+    {
       "Id": "c:\\Users\\isaac\\OneDrive\\Área de Trabalho\\NewWorld\\Biblioteca_Do_Hass\\BibliotecaDoHass\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

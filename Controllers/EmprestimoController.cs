@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using BibliotecaDoHass.Data;
 using BibliotecaDoHass.Models;
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibliotecaDoHass.Controllers
@@ -35,6 +38,8 @@ namespace BibliotecaDoHass.Controllers
         {
             if (ModelState.IsValid)
             {
+                emprestimos.DataUltimaAtualizacao = DateTime.Now;
+
                 _db.Emprestimos.Add(emprestimos);
                 _db.SaveChanges();
 
@@ -64,9 +69,16 @@ namespace BibliotecaDoHass.Controllers
         [HttpPost]
         public IActionResult Editar(EmprestimosModel emprestimo)
         {
+
             if (ModelState.IsValid)
             {
-                _db.Emprestimos.Update(emprestimo);
+                var emprestimoDB = _db.Emprestimos.Find(emprestimo.Id);
+
+                emprestimoDB.Fornecedor = emprestimo.Fornecedor;
+                emprestimoDB.Recebedor = emprestimo.Recebedor;
+                emprestimoDB.LivroEmprestado = emprestimo.LivroEmprestado;
+
+                _db.Emprestimos.Update(emprestimoDB);
                 _db.SaveChanges();
 
                 TempData["MensagemSucesso"] = "Edição realizada com sucesso!";
@@ -92,6 +104,46 @@ namespace BibliotecaDoHass.Controllers
             }
 
             return View(emprestimo);
+        }
+
+        [HttpGet]
+        public IActionResult Exportar()
+        {
+            var dados = GetDados();
+
+            using (XLWorkbook workbook = new XLWorkbook())
+            {
+                workbook.AddWorksheet(dados, "Dados Empréstimos");
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    workbook.SaveAs(ms);
+
+                    return File(ms.ToArray(), "application/vnd.openxlformats-officedocument.spreadsheetml.sheet", "Emprestimos.xls");
+                }
+            }
+        }
+
+        private DataTable GetDados()
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable.TableName = "Dados Empréstimos";
+            dataTable.Columns.Add("Recebedor", typeof(string));
+            dataTable.Columns.Add("Fornecedor", typeof(string));
+            dataTable.Columns.Add("Livro", typeof(string));
+            dataTable.Columns.Add("Data Empréstimo", typeof(DateTime));
+
+            var dados = _db.Emprestimos.ToList();
+
+            if (dados.Count > 0)
+            {
+                dados.ForEach(emprestimo =>
+                {
+                    dataTable.Rows.Add(emprestimo.Recebedor, emprestimo.Fornecedor, emprestimo.LivroEmprestado, emprestimo.DataUltimaAtualizacao);
+                });
+            }
+            return dataTable;
         }
 
         [HttpPost]

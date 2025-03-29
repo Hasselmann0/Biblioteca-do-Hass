@@ -143,3 +143,11 @@ C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\Biblioteca
 C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\obj\Debug\net8.0\BibliotecaDoHass.genruntimeconfig.cache
 C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\obj\Debug\net8.0\ref\BibliotecaDoHass.dll
 C:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\obj\Debug\net8.0\BibliotecaDoHass.sourcelink.json
+c:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\bin\Debug\net8.0\ClosedXML.dll
+c:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\bin\Debug\net8.0\ClosedXML.Parser.dll
+c:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+c:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+c:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\bin\Debug\net8.0\ExcelNumberFormat.dll
+c:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\bin\Debug\net8.0\RBush.dll
+c:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\bin\Debug\net8.0\SixLabors.Fonts.dll
+c:\Users\isaac\OneDrive\Área de Trabalho\NewWorld\Biblioteca_Do_Hass\BibliotecaDoHass\bin\Debug\net8.0\System.IO.Packaging.dll

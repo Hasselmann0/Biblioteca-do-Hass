@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BibliotecaDoHass.Data;
 using BibliotecaDoHass.Models;
+using BibliotecaDoHass.Services.SessaoService;
 using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +16,22 @@ namespace BibliotecaDoHass.Controllers
     public class EmprestimoController : Controller
     {
         readonly private ApplicationDbContext _db;
+        readonly private ISessaoInterface _sessaoInterface;
 
-        public EmprestimoController(ApplicationDbContext db)
+        public EmprestimoController(ApplicationDbContext db, ISessaoInterface sessaoInterface)
         {
             _db = db;
+            _sessaoInterface = sessaoInterface;
         }
 
         public IActionResult Index()
         {
+            var usuario = _sessaoInterface.BuscarSessao();
+            if (usuario ==  null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             IEnumerable<EmprestimosModel> emprestimos = _db.Emprestimos;
             return View(emprestimos);
         }
@@ -30,6 +39,12 @@ namespace BibliotecaDoHass.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
+            var usuario = _sessaoInterface.BuscarSessao();
+            if (usuario == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             return View();
         }
 
@@ -53,6 +68,12 @@ namespace BibliotecaDoHass.Controllers
         [HttpGet]
         public IActionResult Editar(int? id)
         {
+            var usuario = _sessaoInterface.BuscarSessao();
+            if (usuario == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -92,6 +113,12 @@ namespace BibliotecaDoHass.Controllers
         [HttpGet]
         public IActionResult Excluir(int? id)
         {
+            var usuario = _sessaoInterface.BuscarSessao();
+            if (usuario == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             if (id == null || id == 0)
             {
                 return NotFound();

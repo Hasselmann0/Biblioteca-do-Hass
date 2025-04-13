@@ -307,3 +307,4 @@ C:\Users\Hasselmanno\Desktop\NewWorld\Biblioteca-do-Hass\obj\Debug\net8.0\Biblio
 C:\Users\Hasselmanno\Desktop\NewWorld\Biblioteca-do-Hass\obj\Debug\net8.0\BibliotecaDoHass.genruntimeconfig.cache
 C:\Users\Hasselmanno\Desktop\NewWorld\Biblioteca-do-Hass\obj\Debug\net8.0\ref\BibliotecaDoHass.dll
 C:\Users\Hasselmanno\Desktop\NewWorld\Biblioteca-do-Hass\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Hasselmanno\Desktop\NewWorld\Biblioteca-do-Hass\bin\Debug\net8.0\Newtonsoft.Json.dll

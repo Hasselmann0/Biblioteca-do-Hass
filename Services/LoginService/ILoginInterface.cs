@@ -5,10 +5,9 @@ namespace BibliotecaDoHass.Services.LoginService
 {
     public interface ILoginInterface
     {
-        Task<ResponseModel<UsuarioModel>> RegistrarUsuario(UsuarioRegisterDto usuarioRegisterDto)
-        {
-            throw new NotImplementedException();
-        }
+        Task<ResponseModel<UsuarioModel>> RegistrarUsuario(UsuarioRegisterDto usuarioRegisterDto);
+
+        Task<ResponseModel<UsuarioModel>> Login (UsuarioLoginDto loginDto);
 
     }
 }

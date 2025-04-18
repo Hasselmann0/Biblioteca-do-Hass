@@ -12,7 +12,6 @@ namespace BibliotecaDoHass.Services.SessaoService
             _contextAccessor = contextAccessor;
         }
 
-
         public UsuarioModel BuscarSessao()
         {
             var sessaoUsuario = _contextAccessor.HttpContext.Session.GetString("sessaoUsuario");
@@ -20,7 +19,8 @@ namespace BibliotecaDoHass.Services.SessaoService
             {
                 return null;
             }
-            return JsonConvert.DeserializeObject<UsuarioModel>("sessaoUsuario");
+
+            return JsonConvert.DeserializeObject<UsuarioModel>(sessaoUsuario);
         }
 
         public void CriarSessao(UsuarioModel usuarioModel)

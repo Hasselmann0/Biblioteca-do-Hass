@@ -3,6 +3,20 @@
     ViewData["title"] = "Excluir Empréstimo";
 }
 
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-dark" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <div class="container bg-dark p-5 rounded-5">
     <div class="mb-5 text-center">
         <h1 class="text-light">Exclusão de Empréstimos</h1>

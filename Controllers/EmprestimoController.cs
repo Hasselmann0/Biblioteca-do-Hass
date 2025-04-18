@@ -1,30 +1,29 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Linq;
 using System.Threading.Tasks;
 using BibliotecaDoHass.Data;
 using BibliotecaDoHass.Models;
+using Newtonsoft.Json;
+using BibliotecaDoHass.Services.EmprestimosService;
 using BibliotecaDoHass.Services.SessaoService;
 using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BibliotecaDoHass.Controllers
 {
     public class EmprestimoController : Controller
     {
-        readonly private ApplicationDbContext _db;
-        readonly private ISessaoInterface _sessaoInterface;
+        private readonly ISessaoInterface _sessaoInterface;
+        private readonly IEmprestimosInterface _emprestimosInterface;
 
-        public EmprestimoController(ApplicationDbContext db, ISessaoInterface sessaoInterface)
+        public EmprestimoController(IEmprestimosInterface emprestimosInterface, ISessaoInterface sessaoInterface)
         {
-            _db = db;
             _sessaoInterface = sessaoInterface;
+            _emprestimosInterface = emprestimosInterface;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var usuario = _sessaoInterface.BuscarSessao();
             if (usuario ==  null)
@@ -32,8 +31,9 @@ namespace BibliotecaDoHass.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            IEnumerable<EmprestimosModel> emprestimos = _db.Emprestimos;
-            return View(emprestimos);
+            var emprestimos = await _emprestimosInterface.BuscarEmprestimos();
+
+            return View(emprestimos.Dados);
         }
 
         [HttpGet]
@@ -49,69 +49,70 @@ namespace BibliotecaDoHass.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(EmprestimosModel emprestimos)
+        public async Task<IActionResult> Cadastrar(EmprestimosModel emprestimo)
         {
             if (ModelState.IsValid)
             {
-                emprestimos.DataUltimaAtualizacao = DateTime.Now;
 
-                _db.Emprestimos.Add(emprestimos);
-                _db.SaveChanges();
+                var emprestimoResult = await _emprestimosInterface.CadastrarEmprestimo(emprestimo);
 
-                TempData["MensagemSucesso"] = "Cadastro realizado com sucesso!";
+                if (emprestimoResult.Status)
+                {
+                    TempData["MensagemSucesso"] = emprestimoResult.Mensagem;
+                }
+                else
+                {
+                    TempData["MensagemErro"] = emprestimoResult.Mensagem;
+                    return View(emprestimo);
+                }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Login", "Login");
             }
             return View();
         }
 
         [HttpGet]
-        public IActionResult Editar(int? id)
+        public async Task<IActionResult> Editar(int? id)
         {
             var usuario = _sessaoInterface.BuscarSessao();
             if (usuario == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+                   
+            var emprestimo = await _emprestimosInterface.BuscarEmprestimosPorId(id);
 
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            EmprestimosModel emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
-            if (emprestimo == null)
-            {
-                return NotFound();
-            }
-
-            return View(emprestimo);
+            return View(emprestimo.Dados);
         }
 
         [HttpPost]
-        public IActionResult Editar(EmprestimosModel emprestimo)
+        public async Task<IActionResult> Editar(EmprestimosModel emprestimo)
         {
 
             if (ModelState.IsValid)
             {
-                var emprestimoDB = _db.Emprestimos.Find(emprestimo.Id);
+                var emprestimoResult = await _emprestimosInterface.EditarEmprestimo(emprestimo);
 
-                emprestimoDB.Fornecedor = emprestimo.Fornecedor;
-                emprestimoDB.Recebedor = emprestimo.Recebedor;
-                emprestimoDB.LivroEmprestado = emprestimo.LivroEmprestado;
+                if (emprestimoResult.Status)
+                { 
+                    TempData["MensagemSucesso"] = emprestimoResult.Mensagem;
+                }
+                else
+                {
+                    TempData["MensagemErro"] = emprestimoResult.Mensagem;
+                    return View(emprestimo);
+                }
 
-                _db.Emprestimos.Update(emprestimoDB);
-                _db.SaveChanges();
-
-                TempData["MensagemSucesso"] = "Edição realizada com sucesso!";
 
                 return RedirectToAction("Index");
             }
 
+            TempData["MensagemErro"] = "Ocorreu Algum erro no momento da edição!";
             return View(emprestimo);
         }
 
         [HttpGet]
-        public IActionResult Excluir(int? id)
+        public async Task<IActionResult> Excluir(int? id)
         {
             var usuario = _sessaoInterface.BuscarSessao();
             if (usuario == null)
@@ -119,24 +120,15 @@ namespace BibliotecaDoHass.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
+            var emprestimo = await _emprestimosInterface.BuscarEmprestimosPorId(id);
 
-            EmprestimosModel emprestimo = _db.Emprestimos.FirstOrDefault(x => x.Id == id);
-            if (emprestimo == null)
-            {
-                return NotFound();
-            }
-
-            return View(emprestimo);
+            return View(emprestimo.Dados);
         }
 
         [HttpGet]
-        public IActionResult Exportar()
+        public async Task<IActionResult> Exportar()
         {
-            var dados = GetDados();
+            var dados = await _emprestimosInterface.BuscaDadosEmprestimoExcel();
 
             using (XLWorkbook workbook = new XLWorkbook())
             {
@@ -151,39 +143,28 @@ namespace BibliotecaDoHass.Controllers
             }
         }
 
-        private DataTable GetDados()
-        {
-            DataTable dataTable = new DataTable();
-
-            dataTable.TableName = "Dados Empréstimos";
-            dataTable.Columns.Add("Recebedor", typeof(string));
-            dataTable.Columns.Add("Fornecedor", typeof(string));
-            dataTable.Columns.Add("Livro", typeof(string));
-            dataTable.Columns.Add("Data Empréstimo", typeof(DateTime));
-
-            var dados = _db.Emprestimos.ToList();
-
-            if (dados.Count > 0)
-            {
-                dados.ForEach(emprestimo =>
-                {
-                    dataTable.Rows.Add(emprestimo.Recebedor, emprestimo.Fornecedor, emprestimo.LivroEmprestado, emprestimo.DataUltimaAtualizacao);
-                });
-            }
-            return dataTable;
-        }
-
         [HttpPost]
-        public IActionResult Excluir(EmprestimosModel emprestimo)
+        public async Task<IActionResult> Excluir(EmprestimosModel emprestimo)
         {
             if (emprestimo == null)
             {
-                return NotFound();
+                TempData["MensagemErro"] = "Emprestimo não localizado";
+                return View(emprestimo);
             }
-            _db.Emprestimos.Remove(emprestimo);
-            _db.SaveChanges();
 
-            TempData["MensagemSucesso"] = "Remoção realizada com sucesso!";
+            var emprestimoResult = await _emprestimosInterface.ExcluirEmprestimo(emprestimo);
+            
+            if (emprestimoResult.Status)
+            {
+                TempData["MensagemSucesso"] = emprestimoResult.Mensagem;
+            }
+            else
+            {
+                TempData["MensagemErro"] = emprestimoResult.Mensagem;
+                return View(emprestimo);
+            }
+
+            
 
             return RedirectToAction("Index");
         }
